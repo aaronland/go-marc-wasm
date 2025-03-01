@@ -2,6 +2,7 @@ GOROOT=$(shell go env GOROOT)
 GOMOD=$(shell test -f "go.work" && echo "readonly" || echo "vendor")
 
 GOROOT=$(shell go env GOROOT)
+TINYGO=tinygo
 
 SERVER_URI=http://localhost:8080
 
@@ -13,6 +14,13 @@ wasmjs:
 		go build -mod $(GOMOD) -ldflags="-s -w" \
 		-o www/wasm/parse_marc034.wasm \
 		cmd/parse-marc034-wasmjs/main.go
+
+wasi:
+	$(TINYGO) build \
+		-target wasi \
+		-no-debug \
+		-o www/wasi/parse_marc034.wasm \
+		./cmd/parse-marc034-wasip1/main.go
 
 # As in: https://github.com/aaronland/go-http-fileserver
 

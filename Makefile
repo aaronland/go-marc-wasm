@@ -9,13 +9,17 @@ SERVER_URI=http://localhost:8080
 wasmexecjs:
 	cp "$(GOROOT)/lib/wasm/wasm_exec.js" www/javascript/
 
+wasm:
+	@make wasmjs
+	@make wasip1
+
 wasmjs:
 	GOOS=js GOARCH=wasm \
 		go build -mod $(GOMOD) -ldflags="-s -w" \
 		-o www/wasm/parse_marc034.wasm \
 		cmd/parse-marc034-wasmjs/main.go
 
-wasi:
+wasip1:
 	$(TINYGO) build \
 		-target wasi \
 		-no-debug \

@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"syscall/js"
 
-	"github.com/aaronland/go-marc/v2/fields"
+	"github.com/aaronland/go-marc/v3/fields"
 )
 
 func ParseFunc() js.Func {

@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/aaronland/go-marc/v2/fields"	
+	"github.com/aaronland/go-marc/v3/fields"	
 )
 
 func main() {
